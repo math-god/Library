@@ -1,0 +1,29 @@
+﻿<Window x:Class="Library.ReaderWindows.ReaderSignInWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Library"
+        mc:Ignorable="d"
+        Title="Войти как читатель" Height="350" Width="400">
+    <Grid>
+        <Canvas>
+            <Label FontSize="15" Canvas.Top="5" Canvas.Left="20">Вход</Label>
+            <Label Canvas.Top="30" Canvas.Left="20">Имя</Label>
+            <TextBox Canvas.Top="35" Canvas.Left="100" Height="18" Width="150" Name="NameTextBox"></TextBox>
+            <Label Canvas.Top="50" Canvas.Left="20">Фамилия</Label>
+            <TextBox Canvas.Top="55" Canvas.Left="100" Height="18" Width="150" Name="SurnameTextBox"></TextBox>
+            <Label Canvas.Top="70" Canvas.Left="20">Отчество</Label>
+            <TextBox Canvas.Top="75" Canvas.Left="100" Height="18" Width="150" Name="MiddleNameTextBox"></TextBox>
+            <Label Canvas.Top="90" Canvas.Left="20">Email</Label>
+            <TextBox Canvas.Top="95" Canvas.Left="100" Height="18" Width="150" Name="EmailTextBox"></TextBox>
+            <Label Canvas.Top="110" Canvas.Left="20">Телефон</Label>
+            <TextBox Canvas.Top="115" Canvas.Left="100" Height="18" Width="150" Name="PhoneTextBox"></TextBox>
+            <Label Canvas.Top="130" Canvas.Left="20">Рейтинг</Label>
+            <TextBox Canvas.Top="135" Canvas.Left="100" Height="18" Width="150" Name="Rating"></TextBox>
+            <Label Canvas.Top="150" Canvas.Left="20">Пароль</Label>
+            <PasswordBox Canvas.Top="155" Canvas.Left="100" Height="18" Width="150" Name="PasswordBox"></PasswordBox>
+            <Button Canvas.Top="180" Canvas.Left="20" Height="25" Width="40" Click="SignInReader_OnClick">Войти</Button>
+        </Canvas>
+    </Grid>
+</Window>

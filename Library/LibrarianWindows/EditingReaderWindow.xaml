@@ -1,0 +1,41 @@
+﻿<Window x:Class="Library.LibrarianWindows.EditingReaderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Library.LibrarianWindows"
+        mc:Ignorable="d"
+        Title="Редактирование профиля" Height="450" Width="800">
+    <Grid>
+        <Canvas>
+            <Label FontSize="15" Canvas.Top="5" Canvas.Left="20">Редактировать профиль читателя</Label>
+            <Label Canvas.Top="30" Canvas.Left="20">Имя</Label>
+            <TextBox Canvas.Top="35" Canvas.Left="100" Height="18" Width="150" Name="NameTextBox" 
+                     Text="{Binding Name}"></TextBox>
+            <Label Canvas.Top="50" Canvas.Left="20">Фамилия</Label>
+            <TextBox Canvas.Top="55" Canvas.Left="100" Height="18" Width="150" Name="SurnameTextBox" 
+                     Text="{Binding Surname}"></TextBox>
+            <Label Canvas.Top="70" Canvas.Left="20">Отчество</Label>
+            <TextBox Canvas.Top="75" Canvas.Left="100" Height="18" Width="150" Name="MiddleNameTextBox"
+                     Text="{Binding MiddleName}"></TextBox>
+            <Label Canvas.Top="90" Canvas.Left="20">Email</Label>
+            <TextBox Canvas.Top="95" Canvas.Left="100" Height="18" Width="150" Name="EmailTextBox"
+                     Text="{Binding Email}"></TextBox>
+            <Label Canvas.Top="110" Canvas.Left="20">Телефон</Label>
+            <TextBox Canvas.Top="115" Canvas.Left="100" Height="18" Width="150" Name="PhoneTextBox" 
+                     Text="{Binding Phone}"></TextBox>
+            <Label Canvas.Top="130" Canvas.Left="20">Рейтинг</Label>
+            <TextBox Canvas.Top="135" Canvas.Left="100" Height="18" Width="150" Name="RatingTextBox" 
+                     Text="{Binding Rating}"></TextBox>
+            <Label Canvas.Top="150" Canvas.Left="20">Пароль</Label>
+            <!--<PasswordBox Canvas.Top="155" Canvas.Left="100" Height="18" Width="150" Name="PasswordBox"></PasswordBox>-->
+            <TextBox Canvas.Top="155" Canvas.Left="100" Height="18" Width="150" Name="PasswordTextBox" 
+                     Visibility="Hidden"></TextBox>
+            <!--<Button Canvas.Top="155" Canvas.Left="260" Height="20" Width="120" Name="ShowPasswordButton"
+                    Content="Показать пароль" Click="ShowPasswordButton_OnClick"></Button>-->
+            <Label Canvas.Top="170" Canvas.Left="20">Заблокировать</Label>
+            <CheckBox Canvas.Top="175" Canvas.Left="120" Name="BanCheckBox" IsChecked="{Binding IsBanned}"></CheckBox>
+            <Button Canvas.Top="200" Canvas.Left="20" Height="25" Width="60" Click="EditReader_OnClick">Изменить</Button>
+        </Canvas>
+    </Grid>
+</Window>
