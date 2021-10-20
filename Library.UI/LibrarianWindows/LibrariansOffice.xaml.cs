@@ -1,15 +1,24 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using Library.FileExplorer;
-using Library.Models;
+using System.Windows.Documents;
+using Library.Services;
+using Library.Storage;
+using Library.Storage.EntityModels;
 using Microsoft.Win32;
 
-namespace Library.LibrarianWindows
+namespace Library.UI.LibrarianWindows
 {
     public partial class LibrariansOffice : Window
     {
-        private readonly Context _context = Context.GetContext();
+        private readonly DataBaseContext _context = DataBaseContextService.GetContext();
+        private readonly CsvFileReaderService _csvFileReaderService = new CsvFileReaderService();
+        private readonly ReaderService _readerService = new ReaderService();
+
+        private string _messageBoxText;
+        
+        
         public LibrariansOffice()
         {
             InitializeComponent();
@@ -48,19 +57,17 @@ namespace Library.LibrarianWindows
             }
         }
 
-        private void OpenExplorer_OnClick(object sender, RoutedEventArgs e)
+        private void OpenExplorerAndGetRecords_OnClick(object sender, RoutedEventArgs e)
         {
-            var openFileDialog = new OpenFileDialog {Filter = "CSV files (*.csv)|*.csv"};
-
-            if (openFileDialog.ShowDialog() != true) return;
-            var fileName = openFileDialog.FileName;
-            var readersList = CsvFileService.Open(fileName);
+            var fileName = FileExplorerService.OpenExplorerAndGetFileName();
+           
+            var readersList = _csvFileReaderService.ReadFile<Reader>(fileName);
 
             if (readersList == null) return;
-            _context.Readers.AddRange(readersList);
-            _context.SaveChanges();
+            _readerService.AddReadersAndSaveDataBaseContext(readersList, out _messageBoxText);
+
             ReaderGrid.ItemsSource = _context.Readers.ToList();
-            MessageBox.Show("Данные были успешно добавлены");
+            MessageBox.Show(_messageBoxText);
         }
     }
 }

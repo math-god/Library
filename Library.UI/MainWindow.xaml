@@ -1,0 +1,16 @@
+﻿<Window x:Class="Library.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Library.UI"
+        mc:Ignorable="d"
+        Title="Вход" Height="300" Width="350">
+    <Grid>
+        <Canvas>
+            <Button Canvas.Top="120" Canvas.Left="110" Click="GoToLibrarianSignInWindow_OnClick">Войти как библиотекарь</Button>
+            <Button Canvas.Top="150" Canvas.Left="110" Click="GoToReaderSignInWindow_OnClick">Войти как читатель</Button>
+            <Button Canvas.Top="180" Canvas.Left="110" Click="GoToLibrariansOfficeWindow_OnClick">Test</Button>
+        </Canvas>
+    </Grid>
+</Window>
