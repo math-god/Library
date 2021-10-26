@@ -6,8 +6,9 @@ namespace Library.UI.LibrarianWindows
 {
     public partial class AddingNewReaderWindow : Window
     {
-        private string _messageBoxText;
         private readonly ReaderService _readerService = new ReaderService();
+
+        private string _messageBoxText;
 
         public AddingNewReaderWindow()
         {
@@ -36,7 +37,7 @@ namespace Library.UI.LibrarianWindows
                 MessageBox.Show("Ввод ФИО является обязательным");
                 return;
             }
-            
+
             DialogResult = true;
         }
     }

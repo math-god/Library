@@ -5,20 +5,19 @@ namespace Library.StorageServices
     public class CryptographyService
     {
         private const ushort SecretKey = 0x0088;
-        public static string EncodeDecrypt(string str)
+        public static string EncodeDecrypt(string password)
         {
-            
-            var ch = str.ToArray();
-            var newStr = string.Empty;     
-            foreach (var c in ch) 
-                newStr += TopSecret(c, SecretKey);
-            return newStr;
+            var passwordCharsArray = password.ToArray();
+            var encodeDecodePassword = string.Empty;     
+            foreach (var passwordChar in passwordCharsArray) 
+                encodeDecodePassword += MakeXorOperation(passwordChar, SecretKey);
+            return encodeDecodePassword;
         }
         
-        private static char TopSecret(char character, ushort secretKey)
+        private static char MakeXorOperation(char passwordChar, ushort secretKey)
         {
-            character = (char)(character ^ secretKey);
-            return character;
+            passwordChar = (char)(passwordChar ^ secretKey);
+            return passwordChar;
         }
     }
 }

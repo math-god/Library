@@ -4,7 +4,11 @@ namespace Library.Services
 {
     public class DataBaseContextService : DataBaseContext
     {
-        private DataBaseContextService() : base() { }
+        private static readonly object SyncRoot = new object();
+
+        private DataBaseContextService() : base()
+        {
+        }
 
         public static DataBaseContext GetContext()
         {

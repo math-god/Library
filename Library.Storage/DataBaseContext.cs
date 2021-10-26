@@ -6,16 +6,14 @@ namespace Library.Storage
     public class DataBaseContext : DbContext
     {
         protected static DataBaseContext Context;
-        protected static readonly object SyncRoot = new object();
-
-        public DbSet<Librarian> Librarians { get; set; }
-        public DbSet<Reader> Readers { get; set; }
 
         protected DataBaseContext()
         {
-            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
+
+        public DbSet<Librarian> Librarians { get; set; }
+        public DbSet<Reader> Readers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

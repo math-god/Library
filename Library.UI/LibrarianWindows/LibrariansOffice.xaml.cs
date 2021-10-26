@@ -1,12 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using Library.Services;
 using Library.Storage;
 using Library.Storage.EntityModels;
-using Microsoft.Win32;
 
 namespace Library.UI.LibrarianWindows
 {
@@ -17,7 +14,6 @@ namespace Library.UI.LibrarianWindows
         private readonly ReaderService _readerService = new ReaderService();
 
         private string _messageBoxText;
-        
         
         public LibrariansOffice()
         {
@@ -35,7 +31,7 @@ namespace Library.UI.LibrarianWindows
                 ReaderGrid.ItemsSource = _context.Readers.ToList();
             }
         }
-        
+
         private void GoToEditingReaderWindow_OnClick(object sender, RoutedEventArgs e)
         {
             var editingReaderWindow = new EditingReaderWindow((sender as Button)?.DataContext as Reader);
@@ -49,18 +45,16 @@ namespace Library.UI.LibrarianWindows
         private void SignOutButton_OnClick(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show($"Вы точно хотите выйти?",
-                $"Выход из системы", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                DialogResult = true;
+                $"Выход из системы", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes) return;
+            DialogResult = true;
 
-                new MainWindow().Visibility = Visibility.Visible;
-            }
+            new MainWindow().Visibility = Visibility.Visible;
         }
 
         private void OpenExplorerAndGetRecords_OnClick(object sender, RoutedEventArgs e)
         {
             var fileName = FileExplorerService.OpenExplorerAndGetFileName();
-           
+
             var readersList = _csvFileReaderService.ReadFile<Reader>(fileName);
 
             if (readersList == null) return;

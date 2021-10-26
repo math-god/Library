@@ -10,7 +10,7 @@ namespace Library.Services
         private readonly DataBaseContext _dataBaseContext = DataBaseContextService.GetContext();
 
         public bool CheckInputData(string name, string surname, string middleName, string email, string phone,
-            string rating, string password, out string messageBoxText)
+            string password, out string messageBoxText)
         {
             var inputData = new Reader()
             {
@@ -19,13 +19,12 @@ namespace Library.Services
                 MiddleName = middleName,
                 Email = email,
                 Phone = phone,
-                Rating = rating,
                 Password = password
             };
 
             foreach (var reader in _dataBaseContext.Readers)
             {
-                var status = inputData.Equals(reader);
+                var status = Equals(inputData, reader);
 
                 if (!status) continue;
                 if (reader.IsBanned)
@@ -53,7 +52,8 @@ namespace Library.Services
                 Email = email,
                 Phone = phone,
                 Rating = rating,
-                Password = password
+                Password = password,
+                BanButtonInfo = "Разблокирован"
             };
 
             _dataBaseContext.Readers.Add(inputData);
@@ -82,10 +82,20 @@ namespace Library.Services
             reader.Password = password;
             reader.IsBanned = isBanned;
             reader.BanButtonInfo = banButtonInfo;
-            
+
             _dataBaseContext.SaveChanges();
 
             messageBoxText = "Данные были успешно изменены";
+        }
+
+        private static bool Equals(Reader inputData, Reader reader)
+        {
+            return inputData.Name == reader.Name &&
+                   inputData.Surname == reader.Surname &&
+                   inputData.MiddleName == reader.MiddleName &&
+                   inputData.Email == reader.Email &&
+                   inputData.Phone == reader.Phone &&
+                   inputData.Password == reader.Password;
         }
     }
 }

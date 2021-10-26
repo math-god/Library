@@ -1,34 +1,31 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Net;
 using System.Windows;
-using System.Windows.Documents;
-using Library.Logic;
 using Library.Storage.EntityModels;
 
 namespace Library.Services
 {
     public class CsvFileReaderService : FileReader
     {
-        /*private const string ReaderCsvPattern = "Id,Name,Surname,MiddleName,";*/
-
         public override List<T> ReadFile<T>(string filename)
         {
             using (StreamReader streamReader = new StreamReader(filename))
             {
                 try
                 {
+                    if (IsFileEmpty(streamReader))
+                    {
+                        throw new Exception();
+                    }
+
                     var records = GetRecords(streamReader);
                     return (List<T>) records;
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("В выбранном файле содержится модель," +
-                                    " не соответсвующая объекту \"Читатель\"");
+                    MessageBox.Show("Файл пуст или содержит модель," +
+                                    " которая не соответствует объекту \"Читатель\"");
                     return null;
                 }
             }
@@ -55,9 +52,10 @@ namespace Library.Services
                     Email = rawString[3],
                     Phone = rawString[4],
                     Rating = rawString[5],
-                    Password = rawString[6]
+                    Password = rawString[6],
+                    BanButtonInfo = "Разблокирован"
                 };
-                outputData = (List<Reader>) outputData.Append(entity);
+                outputData.Add(entity);
             }
 
             return outputData;

@@ -19,11 +19,9 @@
             <TextBox Canvas.Top="95" Canvas.Left="100" Height="18" Width="150" Name="EmailTextBox"></TextBox>
             <Label Canvas.Top="110" Canvas.Left="20">Телефон</Label>
             <TextBox Canvas.Top="115" Canvas.Left="100" Height="18" Width="150" Name="PhoneTextBox"></TextBox>
-            <Label Canvas.Top="130" Canvas.Left="20">Рейтинг</Label>
-            <TextBox Canvas.Top="135" Canvas.Left="100" Height="18" Width="150" Name="Rating"></TextBox>
-            <Label Canvas.Top="150" Canvas.Left="20">Пароль</Label>
-            <PasswordBox Canvas.Top="155" Canvas.Left="100" Height="18" Width="150" Name="PasswordBox"></PasswordBox>
-            <Button Canvas.Top="180" Canvas.Left="20" Height="25" Width="40" Click="SignInReader_OnClick">Войти</Button>
+            <Label Canvas.Top="130" Canvas.Left="20">Пароль</Label>
+            <PasswordBox Canvas.Top="135" Canvas.Left="100" Height="18" Width="150" Name="PasswordBox"></PasswordBox>
+            <Button Canvas.Top="155" Canvas.Left="20" Height="25" Width="40" Click="SignInReader_OnClick">Войти</Button>
         </Canvas>
     </Grid>
 </Window>

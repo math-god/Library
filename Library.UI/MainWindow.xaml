@@ -10,7 +10,7 @@
         <Canvas>
             <Button Canvas.Top="120" Canvas.Left="110" Click="GoToLibrarianSignInWindow_OnClick">Войти как библиотекарь</Button>
             <Button Canvas.Top="150" Canvas.Left="110" Click="GoToReaderSignInWindow_OnClick">Войти как читатель</Button>
-            <Button Canvas.Top="180" Canvas.Left="110" Click="GoToLibrariansOfficeWindow_OnClick">Test</Button>
+            <!--<Button Canvas.Top="180" Canvas.Left="110" Click="GoToLibrariansOfficeWindow_OnClick">Test</Button>-->
         </Canvas>
     </Grid>
 </Window>

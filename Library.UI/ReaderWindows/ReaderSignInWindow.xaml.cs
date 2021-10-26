@@ -23,13 +23,12 @@ namespace Library.UI.ReaderWindows
                 var middleName = MiddleNameTextBox.Text.Trim();
                 var email = EmailTextBox.Text.Trim();
                 var phone = PhoneTextBox.Text.Trim();
-                var rating = Rating.Text.Trim();
                 var password = PasswordBox.Password;
 
-                _readerService.CheckInputData(name, surname, middleName, email, phone, rating, password,
-                    out _messageBoxText);
-
+                if (!_readerService.CheckInputData(name, surname, middleName, email, phone, password,
+                    out _messageBoxText)) return;
                 MessageBox.Show(_messageBoxText);
+                DialogResult = true;
             }
             catch (Exception)
             {

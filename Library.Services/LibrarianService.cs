@@ -23,7 +23,7 @@ namespace Library.Logic
 
             foreach (var librarian in _dataBaseContext.Librarians)
             {
-                var status = inputData.Equals(librarian);
+                var status = Equals(inputData, librarian);
 
                 if (!status) continue;
                 messageBoxText = "Вход выполнен";
@@ -33,6 +33,16 @@ namespace Library.Logic
 
             messageBoxText = "Неправильные данные";
             return false;
+        }
+        
+        private static bool Equals(Librarian inputData, Librarian librarian)
+        {
+            return inputData.Name == librarian.Name &&
+                   inputData.Surname == librarian.Surname &&
+                   inputData.MiddleName == librarian.MiddleName &&
+                   inputData.Email == librarian.Email &&
+                   inputData.Phone == librarian.Phone &&
+                   inputData.Password == librarian.Password;
         }
     }
 }
