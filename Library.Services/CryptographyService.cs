@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Library.StorageServices
+namespace Library.Services
 {
     public class CryptographyService
     {

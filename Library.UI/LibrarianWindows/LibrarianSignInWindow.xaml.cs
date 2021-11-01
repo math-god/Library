@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Windows;
-using Library.Logic;
+using Library.Services;
+using Library.Services.Models;
+using Library.Storage;
+using Library.Storage.EntityModels;
 
 namespace Library.UI.LibrarianWindows
 {
     public partial class LibrarianSignInWindow : Window
     {
         private readonly LibrarianService _librarianService = new LibrarianService();
-        
-        private string _messageBoxText;
+        private DtoService<Librarian> _dtoService = new DtoService<Librarian>();
+
 
         public LibrarianSignInWindow()
         {
@@ -19,17 +22,27 @@ namespace Library.UI.LibrarianWindows
         {
             try
             {
-                var name = NameTextBox.Text.Trim();
-                var surname = SurnameTextBox.Text.Trim();
-                var middleName = MiddleNameTextBox.Text.Trim();
                 var email = EmailTextBox.Text.Trim();
                 var phone = PhoneTextBox.Text.Trim();
                 var password = PasswordBox.Password.Trim();
 
-                if (!_librarianService.CheckInputData(name, surname, middleName, email, phone, password,
-                    out _messageBoxText)) return;
-                MessageBox.Show(_messageBoxText);
-                DialogResult = true;
+                /*var dtoService = new DtoService<Librarian>(new Librarian());*/
+                var userDto = new UserDto()
+                {
+                    Email = email,
+                    Phone = phone,
+                    Password = password
+                };
+
+                if (_librarianService.CheckInputData(userDto))
+                {
+                    MessageBox.Show("Вход выполнен");
+                    DialogResult = true;
+                }
+                else
+                {
+                    MessageBox.Show("Неправильные данные");
+                }
             }
             catch (Exception)
             {

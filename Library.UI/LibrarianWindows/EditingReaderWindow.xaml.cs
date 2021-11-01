@@ -10,13 +10,11 @@ namespace Library.UI.LibrarianWindows
         private readonly ReaderService _readerService = new ReaderService();
         private readonly Reader _reader;
 
-        private string _messageBoxText;
-
         public EditingReaderWindow(Reader reader = null)
         {
             InitializeComponent();
 
-            PasswordTextBox.Text = reader.Password;
+            PasswordTextBox.Text = CryptographyService.EncodeDecrypt(reader.Password);
             DataContext = reader;
             _reader = reader;
         }
@@ -35,10 +33,10 @@ namespace Library.UI.LibrarianWindows
                 var isBanned = (bool) BanCheckBox.IsChecked;
                 var banButtonInfo = _reader.IsBanned ? "Заблокирован" : "Разблокирован";
 
-                _readerService.EditReaderAndSaveDataBaseContext(name, surname, middleName, email, phone, rating,
-                    password, isBanned, banButtonInfo, out _messageBoxText, _reader);
+                _readerService.EditReader(name, surname, middleName, email, phone, rating,
+                    password, isBanned, banButtonInfo, _reader);
 
-                MessageBox.Show(_messageBoxText);
+                MessageBox.Show("Данные были успешно изменены");
             }
             catch (Exception)
             {

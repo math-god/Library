@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Windows.Documents;
+using Library.Services.Models;
 using Library.Storage;
 using Library.Storage.EntityModels;
 
@@ -9,40 +9,22 @@ namespace Library.Services
     {
         private readonly DataBaseContext _dataBaseContext = DataBaseContextService.GetContext();
 
-        public bool CheckInputData(string name, string surname, string middleName, string email, string phone,
-            string password, out string messageBoxText)
+        public bool? CheckInputData(UserDto userDto)
         {
-            var inputData = new Reader()
-            {
-                Name = name,
-                Surname = surname,
-                MiddleName = middleName,
-                Email = email,
-                Phone = phone,
-                Password = password
-            };
-
             foreach (var reader in _dataBaseContext.Readers)
             {
-                var status = Equals(inputData, reader);
+                var status = Equals(userDto, reader);
 
                 if (!status) continue;
-                if (reader.IsBanned)
-                {
-                    messageBoxText = "Данный читатель заблокирован";
-                    return false;
-                }
-
-                messageBoxText = "Вход выполенен";
+                if (reader.IsBanned) return null;
                 return true;
             }
 
-            messageBoxText = "Неправильные данные";
             return false;
         }
 
-        public void AddReaderAndSaveDataBaseContext(string name, string surname, string middleName, string email,
-            string phone, string rating, string password, out string messageBoxText)
+        public void CreateReader(string name, string surname, string middleName, string email,
+            string phone, string rating, string password)
         {
             var inputData = new Reader()
             {
@@ -52,26 +34,26 @@ namespace Library.Services
                 Email = email,
                 Phone = phone,
                 Rating = rating,
-                Password = password,
+                Password = CryptographyService.EncodeDecrypt(password),
                 BanButtonInfo = "Разблокирован"
             };
 
             _dataBaseContext.Readers.Add(inputData);
             _dataBaseContext.SaveChanges();
-
-            messageBoxText = "Данные были успешно добавлены";
         }
 
-        public void AddReadersAndSaveDataBaseContext(List<Reader> readersList, out string messageBoxText)
+        public void CreateReaders(List<Reader> readersList)
         {
+            if (readersList == null)
+            {
+                return;
+            }
             _dataBaseContext.Readers.AddRange(readersList);
             _dataBaseContext.SaveChanges();
-            messageBoxText = "Данные были успешно добавлены";
         }
 
-        public void EditReaderAndSaveDataBaseContext(string name, string surname, string middleName, string email,
-            string phone, string rating, string password, bool isBanned, string banButtonInfo,
-            out string messageBoxText, Reader reader)
+        public void EditReader(string name, string surname, string middleName, string email,
+            string phone, string rating, string password, bool isBanned, string banButtonInfo, Reader reader)
         {
             reader.Name = name;
             reader.Surname = surname;
@@ -79,23 +61,18 @@ namespace Library.Services
             reader.Email = email;
             reader.Rating = rating;
             reader.Phone = phone;
-            reader.Password = password;
+            reader.Password = CryptographyService.EncodeDecrypt(password);
             reader.IsBanned = isBanned;
             reader.BanButtonInfo = banButtonInfo;
 
             _dataBaseContext.SaveChanges();
-
-            messageBoxText = "Данные были успешно изменены";
         }
 
-        private static bool Equals(Reader inputData, Reader reader)
+        private static bool Equals(UserDto inputData, Reader reader)
         {
-            return inputData.Name == reader.Name &&
-                   inputData.Surname == reader.Surname &&
-                   inputData.MiddleName == reader.MiddleName &&
-                   inputData.Email == reader.Email &&
+            return inputData.Email == reader.Email &&
                    inputData.Phone == reader.Phone &&
-                   inputData.Password == reader.Password;
+                   inputData.Password == CryptographyService.EncodeDecrypt(reader.Password);
         }
     }
 }

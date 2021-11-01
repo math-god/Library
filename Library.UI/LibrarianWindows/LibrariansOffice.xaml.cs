@@ -13,8 +13,6 @@ namespace Library.UI.LibrarianWindows
         private readonly CsvFileReaderService _csvFileReaderService = new CsvFileReaderService();
         private readonly ReaderService _readerService = new ReaderService();
 
-        private string _messageBoxText;
-        
         public LibrariansOffice()
         {
             InitializeComponent();
@@ -57,11 +55,21 @@ namespace Library.UI.LibrarianWindows
 
             var readersList = _csvFileReaderService.ReadFile<Reader>(fileName);
 
-            if (readersList == null) return;
-            _readerService.AddReadersAndSaveDataBaseContext(readersList, out _messageBoxText);
+            if (readersList.Count == 0) return;
+            _readerService.CreateReaders(readersList);
 
             ReaderGrid.ItemsSource = _context.Readers.ToList();
-            MessageBox.Show(_messageBoxText);
+            MessageBox.Show("Данные были успешно добавлены");
         }
+
+        /*private void DataFiltrationTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textBox = sender as TextBox;
+
+            if (textBox.Text != string.Empty)
+            {
+                var filteredList = ReaderGrid.
+            }
+        }*/
     }
 }

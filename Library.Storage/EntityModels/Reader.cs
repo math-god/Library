@@ -1,14 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Library.StorageServices;
 
 namespace Library.Storage.EntityModels
 {
     [Table("Users")]
     public class Reader
     {
-        private string _password;
-
         public int Id { get; set; }
 
         [Required] public string Name { get; set; }
@@ -21,11 +18,7 @@ namespace Library.Storage.EntityModels
 
         public string Phone { get; set; }
 
-        public string Password
-        {
-            get => CryptographyService.EncodeDecrypt(_password);
-            set => _password = CryptographyService.EncodeDecrypt(value);
-        }
+        public string Password { get; set; }
 
         public string Rating { get; set; }
 

@@ -10,6 +10,10 @@ namespace Library.Services
     {
         public override List<T> ReadFile<T>(string filename)
         {
+            if (filename == null)
+            {
+                return new List<T>();
+            }
             using (StreamReader streamReader = new StreamReader(filename))
             {
                 try
@@ -52,7 +56,7 @@ namespace Library.Services
                     Email = rawString[3],
                     Phone = rawString[4],
                     Rating = rawString[5],
-                    Password = rawString[6],
+                    Password =  CryptographyService.EncodeDecrypt(rawString[6]),
                     BanButtonInfo = "Разблокирован"
                 };
                 outputData.Add(entity);

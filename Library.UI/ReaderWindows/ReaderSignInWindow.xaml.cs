@@ -1,12 +1,11 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using Library.Services;
+using Library.Services.Models;
 
 namespace Library.UI.ReaderWindows
 {
     public partial class ReaderSignInWindow : Window
     {
-        private string _messageBoxText;
         private readonly ReaderService _readerService = new ReaderService();
 
         public ReaderSignInWindow()
@@ -16,23 +15,29 @@ namespace Library.UI.ReaderWindows
 
         private void SignInReader_OnClick(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                var name = NameTextBox.Text.Trim();
-                var surname = SurnameTextBox.Text.Trim();
-                var middleName = MiddleNameTextBox.Text.Trim();
-                var email = EmailTextBox.Text.Trim();
-                var phone = PhoneTextBox.Text.Trim();
-                var password = PasswordBox.Password;
+            var email = EmailTextBox.Text.Trim();
+            var phone = PhoneTextBox.Text.Trim();
+            var password = PasswordBox.Password;
 
-                if (!_readerService.CheckInputData(name, surname, middleName, email, phone, password,
-                    out _messageBoxText)) return;
-                MessageBox.Show(_messageBoxText);
+            var userDto = new UserDto()
+            {
+                Email = email,
+                Phone = phone,
+                Password = password
+            };
+
+            if (_readerService.CheckInputData(userDto) == true)
+            {
+                MessageBox.Show("Вход выполнен");
                 DialogResult = true;
             }
-            catch (Exception)
+            else if (_readerService.CheckInputData(userDto) == null)
             {
-                MessageBox.Show("Ввод ФИО является обязательным");
+                MessageBox.Show("Данный читатель заблокирован");
+            }
+            else
+            {
+                MessageBox.Show("Неправильные данные");
             }
         }
     }

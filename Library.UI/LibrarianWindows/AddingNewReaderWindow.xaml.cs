@@ -8,8 +8,6 @@ namespace Library.UI.LibrarianWindows
     {
         private readonly ReaderService _readerService = new ReaderService();
 
-        private string _messageBoxText;
-
         public AddingNewReaderWindow()
         {
             InitializeComponent();
@@ -27,10 +25,10 @@ namespace Library.UI.LibrarianWindows
                 var rating = RatingTextBox.Text.Trim();
                 var password = PasswordBox.Password;
 
-                _readerService.AddReaderAndSaveDataBaseContext(name, surname, middleName, email, phone, rating,
-                    password, out _messageBoxText);
+                _readerService.CreateReader(name, surname, middleName, email, phone, rating,
+                    password);
 
-                MessageBox.Show(_messageBoxText);
+                MessageBox.Show("Данные были успешно добавлены");
             }
             catch (Exception)
             {
