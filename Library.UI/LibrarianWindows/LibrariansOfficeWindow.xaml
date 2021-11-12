@@ -1,0 +1,16 @@
+﻿<Window x:Class="Library.UI.LibrarianWindows.LibrariansOffice"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Library"
+        mc:Ignorable="d"
+        Title="Кабинет библиотекаря" Height="300" Width="350">
+
+    <Grid>
+        <Canvas>
+            <Button Canvas.Top="120" Canvas.Left="110" Click="GoToReaderListWindow_OnClick">Список читателей</Button>
+            <Button Canvas.Top="150" Canvas.Left="110" Click="GoToBookListWindow_OnClick">Список книг</Button>
+        </Canvas>
+    </Grid>
+</Window>
