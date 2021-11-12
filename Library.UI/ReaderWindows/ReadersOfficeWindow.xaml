@@ -1,0 +1,14 @@
+﻿<Window x:Class="Library.UI.ReaderWindows.ReadersOfficeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Library.UI.ReaderWindows"
+        mc:Ignorable="d"
+        Title="ReadersOfficeWindow" Height="450" Width="800">
+    <Grid>
+        <Canvas>
+            <Button Canvas.Top="150" Canvas.Left="110" Click="GoToBookListWindow_OnClick">Список книг</Button>
+        </Canvas>
+    </Grid>
+</Window>

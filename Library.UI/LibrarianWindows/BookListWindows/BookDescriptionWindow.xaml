@@ -1,0 +1,16 @@
+﻿<Window x:Class="Library.UI.LibrarianWindows.BookListWindows.BookDescriptionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Library.UI.LibrarianWindows.BookListWindows"
+        mc:Ignorable="d"
+        Title="Подробнее о книге" Height="450" Width="800">
+    <Grid>
+        <Canvas>
+            <Image Name="CoverImage"></Image>
+            <Label Canvas.Top="10" Canvas.Left="30">Описание:</Label>
+            <TextBlock Canvas.Top="30" Canvas.Left="30" Name="DescriptionTextBlock"></TextBlock>
+        </Canvas>
+    </Grid>
+</Window>
