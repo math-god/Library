@@ -10,7 +10,7 @@
         <Canvas>
             <Label FontSize="15" Canvas.Top="5" Canvas.Left="20">Добавить книгу</Label>
             <Label Canvas.Top="30" Canvas.Left="20">Название</Label>
-            <TextBox Canvas.Top="35" Canvas.Left="120" Height="18" Width="150" Name="NameTextBox" />
+            <TextBox Canvas.Top="35" Canvas.Left="120" Height="18" Width="150" Name="TitleTextBox" />
             <Label Canvas.Top="50" Canvas.Left="20">Жанр</Label>
             <TextBox Canvas.Top="55" Canvas.Left="120" Height="18" Width="150" Name="GenreTextBox" />
             <Label Canvas.Top="70" Canvas.Left="20">Автор</Label>

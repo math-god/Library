@@ -8,7 +8,7 @@ namespace Library.Storage.EntityModels
         [Required] public string Title { get; set; }
         public string Genre { get; set; }
         [Required] public string Author { get; set; }
-        [Required] public int PublicationYear { get; set; }
+        [Required] public string PublicationDate { get; set; }
         public string Description { get; set; }
         public string CoverPreview { get; set; }
         public string Isbn { get; set; }

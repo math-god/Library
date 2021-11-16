@@ -15,16 +15,17 @@
         <DataGrid x:Name="BookGrid" Grid.Row="0" Margin="10" AutoGenerateColumns="False" x:FieldModifier="public"
                   Height="200" CanUserAddRows="False" CanUserDeleteRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Название" Width="100" Binding="{Binding Name}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Название" Width="100" Binding="{Binding Title}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Жанр" Width="70" Binding="{Binding Genre}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Автор" Width="100" Binding="{Binding Author}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Год публикации" Width="105" Binding="{Binding PublicationYear}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Год публикации" Width="105" Binding="{Binding PublicationDate}"
+                                    IsReadOnly="True" />
                 <DataGridTextColumn Header="ISBN" Width="85" Binding="{Binding Isbn}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Блокировка" Width="85" Binding="{Binding IsBanned}" IsReadOnly="True" />
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Name="EditButton" Content="Редактировать"  Click="GoToEditingBookWindow_OnClick"/>
+                            <Button Name="EditButton" Content="Редактировать" Click="GoToEditingBookWindow_OnClick" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -36,7 +37,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
-            
+
         </DataGrid>
         <TextBox Grid.Row="1" Name="DataFiltrationTextBox" Width="100" Height="18" HorizontalAlignment="Left"
                  Margin="10 10" />
@@ -50,7 +51,8 @@
         </ComboBox>
         <Button Name="AddButton" Grid.Row="2" Content="Добавить" Width="100" Height="30" HorizontalAlignment="Right"
                 Margin="0 0 10 0" Click="GoToAddingBookWindow_OnClick" />
-        <Button Name="AddFromCsvButton" Grid.Row="2" Content="Добавить по ISBN" Width="180" Height="30"
+        <Button Name="AddByIsbn" Grid.Row="2" Content="Добавить по ISBN" Width="180" Height="30"
+                Click="GoToAddingBookByIsbn_OnClick"
                 HorizontalAlignment="Right"
                 Margin="0 0 150 0" />
         <Button Name="SignOutButton" Grid.Row="2" Content="Выйти" Width="120" Height="30" HorizontalAlignment="Right"

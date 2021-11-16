@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using Library.Service;
+using Library.Service.Models;
 
 namespace Library.UI.LibrarianWindows.BookListWindows
 {
@@ -22,15 +23,25 @@ namespace Library.UI.LibrarianWindows.BookListWindows
         private void AddBook_OnClick(object sender, RoutedEventArgs e)
         {
             
-                var name = NameTextBox.Text.Trim();
+                var title = TitleTextBox.Text.Trim();
                 var genre = GenreTextBox.Text.Trim();
                 var author = AuthorTextBox.Text.Trim();
-                var publicationYear = Convert.ToInt32(PublicationYearTextBox.Text.Trim());
+                var publicationYear = PublicationYearTextBox.Text.Trim();
                 var description = DescriptionTextBox.Text.Trim();
                 var coverPreview = CoverPreviewTextBox.Text.Trim();
                 var isbn = IsbnTextBox.Text.Trim();
 
-                _bookService.CreateBook(name, genre, author, publicationYear, description, coverPreview, isbn);
+                var bookDto = new BookDto()
+                {
+                    Title = title,
+                    Genre = genre,
+                    Author = author,
+                    PublicationDate = publicationYear,
+                    Description = description,
+                    Isbn = isbn
+                };
+
+                _bookService.CreateBook(bookDto);
 
                 MessageBox.Show("Данные были успешно добавлены");
             

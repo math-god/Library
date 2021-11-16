@@ -23,13 +23,13 @@ namespace Library.UI.LibrarianWindows.BookListWindows
             var filename = FileExplorerService.OpenExplorerAndGetFileName(FileExplorerService.FileFormat.Jpg);
             CoverPreviewTextBox.Text = filename;
         }
-        
+
         private void EditBook_OnClick(object sender, RoutedEventArgs e)
         {
             var name = NameTextBox.Text.Trim();
             var genre = GenreTextBox.Text.Trim();
             var author = AuthorTextBox.Text.Trim();
-            var publicationYear = Convert.ToInt32(PublicationYearTextBox.Text.Trim());
+            var publicationYear = PublicationYearTextBox.Text.Trim();
             var description = DescriptionTextBox.Text.Trim();
             var coverPreview = CoverPreviewTextBox.Text.Trim();
             var isbn = IsbnTextBox.Text.Trim();

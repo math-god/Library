@@ -42,9 +42,6 @@ namespace Library.UI
             new ReadersOfficeWindow().ShowDialog();
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            _isbnService.GetBook("9780980200447");
-        }
+     
     }
 }

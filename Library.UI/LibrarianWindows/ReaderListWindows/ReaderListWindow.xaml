@@ -31,16 +31,15 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox Grid.Row="1" Name="DataFiltrationTextBox" Width="100" Height="18" HorizontalAlignment="Left"
-                 Margin="10 10" />
-        <ComboBox Grid.Row="1" Name="FiltrationColumnListBox" Width="100" Height="18" HorizontalAlignment="Left"
-                 Margin="150 0 0 0">
+        <TextBox Grid.Row="1" Name="DataFiltrationTextBox" Width="100" Height="20" HorizontalAlignment="Left"
+                 Margin="10 10" TextChanged="DataFiltrationTextBox_OnTextChanged" />
+        <ComboBox Grid.Row="1" Name="FiltrationColumnComboBox" Width="100" Height="20" HorizontalAlignment="Left"
+                  Margin="150 0 0 0">
             <TextBlock>Имя</TextBlock>
             <TextBlock>Фамилия</TextBlock>
             <TextBlock>Отчество</TextBlock>
             <TextBlock>Email</TextBlock>
             <TextBlock>Рейтинг</TextBlock>
-            <TextBlock>Статус</TextBlock>
         </ComboBox>
         <Button Name="AddButton" Grid.Row="2" Content="Добавить" Width="100" Height="30" HorizontalAlignment="Right"
                 Margin="0 0 10 0" Click="GoToAddingNewReaderWindow" />

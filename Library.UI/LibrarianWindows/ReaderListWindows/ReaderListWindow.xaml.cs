@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using Library.Service;
+using Library.Service.Models;
 using Library.Storage;
 using Library.Storage.EntityModels;
 
@@ -9,10 +10,11 @@ namespace Library.UI.LibrarianWindows.ReaderListWindows
 {
     public partial class ReaderListWindow : Window
     {
-         private readonly DataBaseContext _context = DataBaseContextService.GetContext();
-        
+        private readonly DataBaseContext _context = DataBaseContextService.GetContext();
+
         private readonly CsvFileReaderService _csvFileReaderService = new CsvFileReaderService();
         private readonly ReaderService _readerService = new ReaderService();
+        private readonly SearchFilterService _searchFilterService = new SearchFilterService();
 
         public ReaderListWindow()
         {
@@ -62,15 +64,11 @@ namespace Library.UI.LibrarianWindows.ReaderListWindows
             ReaderGrid.ItemsSource = _context.Readers.ToList();
             MessageBox.Show("Данные были успешно добавлены");
         }
-
-        /*private void DataFiltrationTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
+        
+        private void DataFiltrationTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            var textBox = sender as TextBox;
-
-            if (textBox.Text != string.Empty)
-            {
-                var filteredList = ReaderGrid.
-            }
-        }*/
+            ReaderGrid.ItemsSource = _searchFilterService.SearchReader( FiltrationColumnComboBox.Text,
+                DataFiltrationTextBox.Text.Trim());
+        }
     }
 }

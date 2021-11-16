@@ -10,6 +10,7 @@ namespace Library.UI.LibrarianWindows.BookListWindows
     public partial class BookListWindow : Window
     {
         private readonly DataBaseContext _context = DataBaseContextService.GetContext();
+
         public BookListWindow()
         {
             InitializeComponent();
@@ -42,6 +43,16 @@ namespace Library.UI.LibrarianWindows.BookListWindows
             var editingBookWindow = new EditingBookWindow((sender as Button)?.DataContext as Book);
             editingBookWindow.ShowDialog();
             if (editingBookWindow.DialogResult == true)
+            {
+                BookGrid.ItemsSource = _context.Books.ToList();
+            }
+        }
+
+        private void GoToAddingBookByIsbn_OnClick(object sender, RoutedEventArgs e)
+        {
+            var addingBookByIsbnWindow = new AddingBookByIsbnWindow();
+            addingBookByIsbnWindow.ShowDialog();
+            if (addingBookByIsbnWindow.DialogResult == true)
             {
                 BookGrid.ItemsSource = _context.Books.ToList();
             }
