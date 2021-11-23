@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:Library.UI.ReaderWindows"
         mc:Ignorable="d"
-        Title="ReadersOfficeWindow" Height="450" Width="800">
+        Title="Кабинет читателя" Height="450" Width="800">
     <Grid>
         <Canvas>
             <Button Canvas.Top="150" Canvas.Left="110" Click="GoToBookListWindow_OnClick">Список книг</Button>

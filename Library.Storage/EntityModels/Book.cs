@@ -13,5 +13,7 @@ namespace Library.Storage.EntityModels
         public string CoverPreview { get; set; }
         public string Isbn { get; set; }
         public bool IsBanned { get; set; }
+        public int Penalty { get; set; }
+        public int Amount { get; set; }
     }
 }

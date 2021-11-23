@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-
 
 namespace Library.Service
 {
@@ -13,21 +13,19 @@ namespace Library.Service
 
             return base64;
         }
-        
-        /*public BitmapSource  DecodeBase64(string base64)
-        {
-            byte[] binaryData = Convert.FromBase64String(base64);
 
-            MemoryStream stream = new MemoryStream(binaryData, 0, binaryData.Length);
-            stream.Position = 0;
-            
-            BitmapImage result = new BitmapImage();
-            result.BeginInit();
-            result.CacheOption = BitmapCacheOption.OnLoad;
-            result.StreamSource = stream;
-            result.EndInit();
-            result.Freeze();
-            return result;
-        }*/
+        public void Base64ToImage(string base64String)
+        {
+            Guid imageId = Guid.NewGuid();
+
+            var bytes = Convert.FromBase64String(base64String);
+            using (var imageFile = new FileStream(
+                $"C:\\Users\\danya\\RiderProjects\\PetProjects\\WsrLibrary\\Covers\\{imageId}.jpg",
+                FileMode.Create))
+            {
+                imageFile.Write(bytes, 0, bytes.Length);
+                imageFile.Flush();
+            }
+        }
     }
 }

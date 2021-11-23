@@ -15,10 +15,10 @@
         <DataGrid x:Name="BookGrid" Grid.Row="0" Margin="10" AutoGenerateColumns="False" x:FieldModifier="public"
                   Height="200" CanUserAddRows="False" CanUserDeleteRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Название" Width="100" Binding="{Binding Name}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Название" Width="100" Binding="{Binding Title}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Жанр" Width="70" Binding="{Binding Genre}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Автор" Width="100" Binding="{Binding Author}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Год публикации" Width="105" Binding="{Binding PublicationYear}"
+                <DataGridTextColumn Header="Год публикации" Width="105" Binding="{Binding PublicationDate}"
                                     IsReadOnly="True" />
                 <DataGridTextColumn Header="ISBN" Width="85" Binding="{Binding Isbn}" IsReadOnly="True" />
                 <DataGridTemplateColumn>

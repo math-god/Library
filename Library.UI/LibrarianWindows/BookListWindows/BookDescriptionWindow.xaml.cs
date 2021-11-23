@@ -13,6 +13,8 @@ namespace Library.UI.LibrarianWindows.BookListWindows
             
             CheckDescriptionForNull(book);
 
+            DataContext = book;
+            
             /*CoverImage.Source = _imageService.DecodeBase64(book.CoverPreview);*/
         }
 

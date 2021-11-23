@@ -5,12 +5,10 @@ using Library.UI.ReaderWindows;
 
 namespace Library.UI
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private IsbnService _isbnService = new IsbnService();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -41,7 +39,5 @@ namespace Library.UI
         {
             new ReadersOfficeWindow().ShowDialog();
         }
-
-     
     }
 }
